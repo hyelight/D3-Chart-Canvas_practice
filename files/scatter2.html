@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <!-- 상황설명: sample1은 circle을 추가해주고 싶은 상황이므로 enter 사용해야 하고, sample2는 삭제해줘야 하므로 exit 사용 -->
+    <svg id="sample1">
+        <circle></circle>
+        <circle></circle>
+    </svg>
+    <hr>
+    <svg id="sample2">
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+        <circle></circle>
+    </svg>
+<script>
+    const sampleData = [
+            [5, 20, 30, '#ff0000'],
+            [5, 320, 90, '#FFCC4D'],
+            [5, 150, 50, '#66B2BD'],
+            [7, 120, 70, '#990055'], 
+            [7, 530, 110, '#0077AA'],
+            [7, 410, 20, '#A08BAA'], 
+            [12, 720, 60, '#F7DBB1'], 
+            [12, 30, 110, '#66757F'], 
+            [12, 90, 130, '#FD8C73'], 
+            [19, 510, 180, '#64CA7B'],
+            [19, 310, 120, '#F4A8A8'],
+            [8, 50, 150, '#563D7C'],
+            [7, 50, 350, '#E34C26'],
+        ];
+    // enter() : data가 기존 html 요소의 수보다 많을 때에는 enter를 사용해서 남는 데이터들을 추가로 선택해주고 스타일을 변경해줌
+    const scatter1 = d3.select('#sample1')
+                        .attr('width', 1000)
+                        .attr('height', 500)
+    
+    scatter1.selectAll('circle')
+            .data(sampleData)
+            .attr('r', d => d[0])
+            .attr('cx', d => d[1])
+            .attr('cy', d => d[2])
+            .attr('fill', d => d[3])
+            .enter()
+            .append('circle') // 데이터 수 만큼 circle 생성
+            .attr('r', d => d[0])
+            .attr('cx', d => d[1])
+            .attr('cy', d => d[2])
+            .attr('fill', d => d[3])
+    
+    // exit() : data가 기존 html 요소의 수보다 적을 때에는 exit을 사용해서 남은 요소를 선택 후 remove를 사용해 제거
+    const sampleData2 = [
+            [5, 20, 30, '#ff0000'],
+            [5, 320, 90, '#FFCC4D'],
+            [5, 150, 50, '#66B2BD'],
+            [7, 120, 70, '#990055'], 
+        ];
+    const scatter2 = d3.select('#sample2')
+                        .attr('width', 1000)
+                        .attr('height', 500)
+    
+    scatter2.selectAll('circle')
+            .data(sampleData2)
+            .attr('r', d => d[0])
+            .attr('cx', d => d[1])
+            .attr('cy', d => d[2])
+            .attr('fill', d => d[3])
+            .exit()
+            .remove()
+    
+
+</script>
+</body>
+</html>

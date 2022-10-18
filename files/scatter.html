@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+<body>
+    <div class="canvas"></div>
+    <svg width="1000" height="1000"></svg>
+    <script>
+        const sampleData = [
+            [5, 20, 30, '#ff0000'],
+            [5, 320, 90, '#FFCC4D'],
+            [5, 150, 50, '#66B2BD'],
+            [7, 120, 70, '#990055'], 
+            [7, 530, 110, '#0077AA'],
+            [7, 410, 20, '#A08BAA'], 
+            [12, 720, 60, '#F7DBB1'], 
+            [12, 30, 110, '#66757F'], 
+            [12, 90, 130, '#FD8C73'], 
+            [19, 510, 180, '#64CA7B'],
+            [19, 310, 120, '#F4A8A8'],
+            [8, 50, 150, '#563D7C'],
+            [7, 50, 350, '#E34C26'],
+        ];
+        const svg = d3.select('.canvas').append('svg').attr('width', 1000).attr('height', 1000);
+
+        svg.selectAll('circle') // 데이터의 수가 DOM 요소보다 많을 경우 enter 사용
+            .data(sampleData)
+            .enter() // enter로 요소 생성
+            // enter(데이터 수 > DOM 요소), update(재적용, 화면 갱신), exit(데이터 수 < DOM 요소)
+            // 지금 상황의 경우 circle이라는 태그가 아예 없는데, sampleData는 엄청 많은 상황 따라서 enter 사용해야 함
+            .append('circle')
+            .attr('r', d => d[0])
+            // .attr('r', function(d){
+            //     return d[0]
+            // }) => 혹은 이렇게도 씀 화살표 함수는 좀 더 간단하게 만든 거임
+            .attr('cx', d => d[1] + 10) // 10을 더한 이유: 원이 생겼을 때, 일부가 잘릴 수 있기 때문
+            .attr('cy', d => d[2] + 10)
+            .attr('fill', d => d[3])
+
+    </script>
+</body>
+</html>

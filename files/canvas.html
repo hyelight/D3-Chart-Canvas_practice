@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+</head>
+<body>
+    <canvas width="1000" height="1000" id="canvas"></canvas>
+    <script>
+        const canvas = document.querySelector('#canvas');
+        const ctx = canvas.getContext('2d')
+
+        function Rectangle(){
+            let x = 50,
+                y = 100,
+                w = 300,
+                h = 300
+            ctx.fillStyle = 'hotpink'
+            ctx.fill()
+            ctx.fillRect(x, y, w, h)
+            ctx.stroke()
+        }
+        Rectangle()
+
+        function Circle(){ // 선시작
+            ctx.beginPath()
+            let x = 500,
+                y = 700,
+                r = 50, // 반지름
+                s = 0, //시작 앵글
+                e = Math.PI * 2 // 종료 앵글, 1이면 반원
+            ctx.arc(x, y, r, s, e)
+            ctx.fillStyle = 'salmon' // 색을 선택
+            ctx.fill() //칠하기
+            ctx.stroke()
+        }
+        Circle()
+
+        function 삼각형() {
+            //점을 하나씩 찍는 방식 moveTo, lineTo를 바꾸면 삼각형 모양이 바뀜
+            ctx.beginPath() // 선시작
+            ctx.moveTo(500, 600);
+            ctx.lineTo(200, 250); //경유 경로
+            ctx.lineTo(250, 250); //경유 경로
+            ctx.fillStyle = 'purple';
+            ctx.fill();
+            // ctx.stroke()
+        }
+
+        삼각형();
+
+        // let xx = 200;
+        // function 움직이는공() {
+        //     ctx.clearRect(0, 0, 1000, 1000)
+        //     ctx.beginPath() // 선시작, 주석 처리 해보기
+        //     let y = 300,
+        //         r = 30, // 반지름
+        //         s = 0, // 끝나는 앵글
+        //         e = Math.PI * 2 // 시작 앵글, 1이면 반원
+        //     ctx.arc(xx, y, r, s, e)
+        //     ctx.fillStyle = 'gray' // 색 선택
+        //     ctx.fill() // 칠하기
+        //     ctx.stroke()
+        //     그래프()
+        //     xx += 1
+        //     if (xx >= 970) {
+        //         return
+        //     }
+        //     // 그릴 준비되면 그림
+        //     requestAnimationFrame(움직이는공)
+        // }
+        
+        // 움직이는공()
+    </script>
+</body>
+</html>

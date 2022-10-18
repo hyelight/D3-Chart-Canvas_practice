@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <svg width="500" height="600"></svg>
+    <script>
+        const sampleData = [10, 20, 30, 40, 25, 100 ,90, 70, 5];
+        const sampleData2 = [110, 50, 20, 80, 35, 80 ,70, 90, 50];
+        const svg = d3.select('svg');
+        const barWidth = 40
+
+        sampleData.forEach((data, index)=>{
+            svg.append('rect')
+                .attr('id', `bar${index}`) // 바 하나하나 마다 id로 자아(?)를 부여한 상태
+                .attr('height', data)
+                .attr('width', barWidth)
+                .attr('x', 50 * index + 50) // 50을 더해준 이유는 그냥 이 그래프 전체 위치를 오른쪽으로 옮겨 준 거임
+                .attr('y', 400 - data + 50) // 50을 더해준 이유는 그냥 이 그래프 전체 위치를 아래쪽으로 옮겨 준 거임
+                .attr('fill', 'pink')
+                .transition()
+                .duration(3000)
+                .ease(d3.easeLinear)
+                .style('fill', 'slateblue')
+                .attr('height', sampleData2[index])
+                .attr('y', 400 - sampleData2[index] + 50)
+
+            d3.select('#bar0')
+                .transition()
+                .duration(1000)
+                .ease(d3.easeLinear)
+                .style('fill', 'goldenrod')
+                .delay(3000)
+
+            // svg.append('text')
+            //     .attr('x', 50 * index + 60)
+            //     .attr('y', 400 - data + 40)
+            //     .text('data')
+            //     .style('font-size', '1.2em')
+            //     .attr('fill', 'slateblue')
+
+        })
+
+    </script>
+</body>
+</html>

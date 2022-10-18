@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<style>
+    /* 여기 안에서도 변경 가능*/
+    :root{
+        --main-color: hotpink;
+    }
+
+    text{
+        color: var(--main-color);
+    }
+</style>
+</head>
+<body>
+    <svg width="1000" height="1000" style="background-color: slateblue">
+        <g>
+            <circle cy="100" cx="100" r="50" fill="pink" stroke="gold" stroke-width="5"></circle>
+            <circle cy="250" cx="150" r="50" fill="pink" stroke="gold" stroke-width="5"></circle>
+            <circle cy="400" cx="200" r="50" fill="pink" stroke="gold" stroke-width="5"></circle>
+            <circle cy="550" cx="250" r="50" fill="pink" stroke="gold" stroke-width="5"></circle>
+            <rect y="495" x="495" width="500" height="500" r="100" fill="salmon" stroke="gray" stroke-width="10"></rect>
+            <path d="M 200,700 300,900 200,900 300,700" fill="orange"></path>
+        </g>
+        <text x="600" y="600">Stay</text>
+    </svg>
+    <div class="canvas"></div>
+    <script>
+        const canvas = d3.select('.canvas');
+
+        const svg = canvas.append('svg')
+            .attr('height', 1000)
+            .attr('width', 1000)
+
+        svg.append('text')
+            .attr('x', 300)
+            .attr('y', 80)
+            .text('butterfly')
+            .style('font-weight', 'bold')
+            .style('font-size', '50px')
+            .style('font-family', 'Pacifico');
+        
+        svg.append('rect')
+            .attr('width', 200)
+            .attr('height', 400)
+            .attr('fill', 'hotpink')
+
+        svg.append('circle')
+            .attr('cx', 200) // x축
+            .attr('cy', 400) // y축
+            .attr('r', 80)
+            .attr('fill', 'darkblue')
+
+        svg.append('line')
+            .attr('x1', 200) // x축 시작
+            .attr('y1', 400) // y축 끝
+            .attr('x2', 80) // x축 시작
+            .attr('y2', 80) // y축 끝
+            .attr('stroke', 'purple')
+            .attr('stroke-width', 20)
+
+    </script>
+</body>
+</html>
